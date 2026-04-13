@@ -1,0 +1,35 @@
+<div id="reward-indicator" class="fixed bottom-4 left-4 z-50 opacity-0 transition-opacity duration-300">
+  <div class="flex items-center gap-2 rounded-full bg-black/80 px-3 py-1.5 text-xs text-white backdrop-blur-sm">
+    <span class="text-green-400">✦</span>
+    <span id="reward-text">Flow state building...</span>
+  </div>
+</div>
+
+<script>
+  let interactionCount = 0;
+  const indicator = document.getElementById('reward-indicator');
+  const rewardText = document.getElementById('reward-text');
+  
+  function showReward(message) {
+    if (!indicator) return;
+    rewardText.textContent = message;
+    indicator.style.opacity = '1';
+    setTimeout(() => {
+      indicator.style.opacity = '0';
+    }, 2000);
+  }
+  
+  document.addEventListener('click', (e) => {
+    if (e.target.closest('button, a, [role="button"]')) {
+      interactionCount++;
+      
+      if (interactionCount === 3) {
+        showReward('✨ Texture unlocked — interface gains depth');
+      } else if (interactionCount === 6) {
+        showReward('🎨 Spatial anchors active — faster navigation');
+      } else if (interactionCount === 9) {
+        showReward('⚡ Flow state achieved — background responds to you');
+      }
+    }
+  });
+</script>

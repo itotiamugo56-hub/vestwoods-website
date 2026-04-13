@@ -1,0 +1,404 @@
+---
+export const prerender = true;
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import productsData from '../../data/products.json';
+
+const products = productsData.products;
+---
+
+<BaseLayout>
+  <div class="mx-auto max-w-3xl">
+    <div class="mb-8 text-center">
+      <h1 class="text-3xl font-bold text-gray-900">Request a Quote</h1>
+      <p class="mt-2 text-gray-600">
+        Tell us about your project and we'll match you with the right solution
+      </p>
+    </div>
+    
+    <form 
+      id="lead-form"
+      class="space-y-6 rounded-lg border border-gray-200 bg-white p-6 shadow-sm"
+      method="POST"
+      action="/api/submit-lead.json"
+      data-netlify="true"
+      netlify-honeypot="bot-field"
+    >
+      <input type="hidden" name="form-name" value="lead" />
+      <p class="hidden">
+        <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+      </p>
+      
+      {/* Name */}
+      <div class="form-group">
+        <label class="block text-sm font-medium text-gray-900">Full Name *</label>
+        <input 
+          type="text" 
+          name="name" 
+          id="name"
+          required
+          class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:outline-none"
+        />
+        <div class="error-message hidden mt-1 text-sm text-red-600" data-for="name"></div>
+      </div>
+      
+      {/* Email */}
+      <div class="form-group">
+        <label class="block text-sm font-medium text-gray-900">Email *</label>
+        <input 
+          type="email" 
+          name="email" 
+          id="email"
+          required
+          class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:outline-none"
+        />
+        <div class="error-message hidden mt-1 text-sm text-red-600" data-for="email"></div>
+      </div>
+      
+      {/* Company */}
+      <div class="form-group">
+        <label class="block text-sm font-medium text-gray-900">Company</label>
+        <input 
+          type="text" 
+          name="company" 
+          id="company"
+          class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:outline-none"
+        />
+        <div class="error-message hidden mt-1 text-sm text-red-600" data-for="company"></div>
+      </div>
+      
+      {/* Phone */}
+      <div class="form-group">
+        <label class="block text-sm font-medium text-gray-900">Phone (Optional)</label>
+        <input 
+          type="tel" 
+          name="phone" 
+          id="phone"
+          class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:outline-none"
+        />
+        <div class="error-message hidden mt-1 text-sm text-red-600" data-for="phone"></div>
+      </div>
+      
+      {/* Project Size */}
+      <div class="form-group">
+        <label class="block text-sm font-medium text-gray-900">Project Size (kWh) *</label>
+        <select 
+          name="projectSize_kWh" 
+          id="projectSize_kWh"
+          required
+          class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:outline-none"
+        >
+          <option value="">Select size</option>
+          <option value="<10">&lt;10 kWh (Residential)</option>
+          <option value="10-50">10-50 kWh (Small Commercial)</option>
+          <option value="50-200">50-200 kWh (Commercial)</option>
+          <option value="200+">&gt;200 kWh (Utility/Industrial)</option>
+        </select>
+        <div class="error-message hidden mt-1 text-sm text-red-600" data-for="projectSize_kWh"></div>
+      </div>
+      
+      {/* Application Type */}
+      <div class="form-group">
+        <label class="block text-sm font-medium text-gray-900">Application *</label>
+        <select 
+          name="applicationType" 
+          id="applicationType"
+          required
+          class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:outline-none"
+        >
+          <option value="">Select application</option>
+          <option value="residential">Residential (Home Backup)</option>
+          <option value="commercial">Commercial (Business/Office)</option>
+          <option value="industrial">Industrial (Factory/Warehouse)</option>
+          <option value="utility">Utility/Grid-scale</option>
+        </select>
+        <div class="error-message hidden mt-1 text-sm text-red-600" data-for="applicationType"></div>
+      </div>
+      
+      {/* Timeline */}
+      <div class="form-group">
+        <label class="block text-sm font-medium text-gray-900">Project Timeline *</label>
+        <select 
+          name="timeline" 
+          id="timeline"
+          required
+          class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:outline-none"
+        >
+          <option value="">Select timeline</option>
+          <option value="0-3">Immediate (0-3 months)</option>
+          <option value="3-6">Short-term (3-6 months)</option>
+          <option value="6-12">Medium-term (6-12 months)</option>
+          <option value="12+">Long-term (12+ months)</option>
+        </select>
+        <div class="error-message hidden mt-1 text-sm text-red-600" data-for="timeline"></div>
+      </div>
+      
+      {/* Product Interest (Multi-select) */}
+      <div class="form-group">
+        <label class="block text-sm font-medium text-gray-900">Products Interested In</label>
+        <div class="mt-2 space-y-2" id="product-checkboxes">
+          {products.map(product => (
+            <label class="flex items-center gap-2">
+              <input 
+                type="checkbox" 
+                name="productInterestIds" 
+                value={product.id}
+                class="rounded border-gray-300 product-checkbox"
+              />
+              <span class="text-sm text-gray-700">{product.name}</span>
+            </label>
+          ))}
+        </div>
+      </div>
+      
+      {/* Message */}
+      <div class="form-group">
+        <label class="block text-sm font-medium text-gray-900">Additional Information</label>
+        <textarea 
+          name="message" 
+          id="message"
+          rows="4"
+          class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:outline-none"
+        ></textarea>
+      </div>
+      
+      <button 
+        type="submit"
+        id="submit-btn"
+        class="w-full rounded-lg bg-blue-600 px-6 py-3 text-white hover:bg-blue-700 disabled:bg-gray-400"
+      >
+        Submit Request
+      </button>
+      
+      <div class="mt-6 text-center">
+        <p class="text-gray-500 text-sm mb-3">Or chat with us directly</p>
+        <a
+          href="https://wa.me/2348123456789?text=Hello%20Vestwoods%2C%20I%27m%20interested%20in%20your%20energy%20storage%20solutions."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center gap-2 bg-[#25D366] text-white px-6 py-3 rounded-lg font-semibold hover:scale-105 transition-transform w-full sm:w-auto"
+        >
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.967-.94 1.165-.173.199-.347.223-.644.075-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.614-.916-2.21-.242-.579-.487-.5-.669-.51-.173-.01-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.298-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 2C6.48 2 2 6.48 2 12c0 1.892.521 3.664 1.426 5.191L2 22l4.809-1.426A9.959 9.959 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z"/>
+          </svg>
+          Chat on WhatsApp
+        </a>
+      </div>
+      
+      <div id="toast-container" class="fixed bottom-4 right-4 z-50 space-y-2"></div>
+    </form>
+  </div>
+  
+  <script>
+    const form = document.getElementById('lead-form');
+    const submitBtn = document.getElementById('submit-btn');
+    const toastContainer = document.getElementById('toast-container');
+    
+    // Validation rules
+    const validators = {
+      name: (value) => value.trim().length >= 2 ? null : 'Name must be at least 2 characters',
+      email: (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) ? null : 'Enter a valid email address',
+      phone: (value) => {
+        if (!value) return null;
+        return /^[\d\s\+\-\(\)]{10,}$/.test(value) ? null : 'Enter a valid phone number';
+      },
+      projectSize_kWh: (value) => value ? null : 'Select a project size',
+      applicationType: (value) => value ? null : 'Select an application type',
+      timeline: (value) => value ? null : 'Select a timeline'
+    };
+    
+    // Sanitize user input to prevent XSS
+    function sanitizeInput(str) {
+      if (!str) return '';
+      return str.replace(/[&<>]/g, function(m) {
+        if (m === '&') return '&amp;';
+        if (m === '<') return '&lt;';
+        if (m === '>') return '&gt;';
+        return m;
+      });
+    }
+    
+    // Show toast notification
+    function showToast(message, type = 'success') {
+      const toast = document.createElement('div');
+      const sanitizedMessage = sanitizeInput(message);
+      toast.className = `rounded-lg px-4 py-3 shadow-lg text-white animate-slide-up ${
+        type === 'success' ? 'bg-green-600' : 'bg-red-600'
+      }`;
+      toast.textContent = sanitizedMessage;
+      toastContainer.appendChild(toast);
+      setTimeout(() => toast.remove(), 5000);
+    }
+    
+    // Inline validation on blur
+    document.querySelectorAll('input, select, textarea').forEach(field => {
+      field.addEventListener('blur', () => {
+        const name = field.getAttribute('name');
+        const validator = validators[name];
+        if (validator) {
+          const error = validator(field.value);
+          const errorDiv = document.querySelector(`.error-message[data-for="${name}"]`);
+          if (error) {
+            errorDiv.textContent = error;
+            errorDiv.classList.remove('hidden');
+            field.classList.add('border-red-500');
+          } else {
+            errorDiv.classList.add('hidden');
+            field.classList.remove('border-red-500');
+          }
+        }
+      });
+    });
+    
+    // Load saved comparison products from localStorage
+    const savedCompareIds = localStorage.getItem('vestwoods_compare_ids');
+    if (savedCompareIds) {
+      try {
+        const ids = JSON.parse(savedCompareIds);
+        if (Array.isArray(ids)) {
+          const checkboxes = document.querySelectorAll('.product-checkbox');
+          for (const checkbox of checkboxes) {
+            if (ids.includes(checkbox.value)) {
+              checkbox.checked = true;
+            }
+          }
+          if (ids.length > 0) {
+            showToast(`Pre-selected ${ids.length} product(s) from your comparison`, 'success');
+          }
+        }
+      } catch (e) {
+        console.warn('Failed to parse saved comparison IDs');
+      }
+    }
+    
+    // Auto-select product from URL parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get('product');
+    if (productId) {
+      const checkboxes = document.querySelectorAll('.product-checkbox');
+      for (const checkbox of checkboxes) {
+        if (checkbox.value === productId) {
+          checkbox.checked = true;
+          showToast(`Pre-selected product from comparison table`, 'success');
+          break;
+        }
+      }
+    }
+    
+    // Auto-select solution from URL parameter
+    const solutionParam = urlParams.get('solution');
+    if (solutionParam === 'residential') {
+      const projectSizeField = document.querySelector('#projectSize_kWh');
+      if (projectSizeField) projectSizeField.value = '<10';
+      const appTypeField = document.querySelector('#applicationType');
+      if (appTypeField) appTypeField.value = 'residential';
+      showToast(`Pre-selected residential solution`, 'success');
+    } else if (solutionParam === 'commercial') {
+      const appTypeField = document.querySelector('#applicationType');
+      if (appTypeField) appTypeField.value = 'commercial';
+      showToast(`Pre-selected commercial solution`, 'success');
+    } else if (solutionParam === 'utility') {
+      const projectSizeField = document.querySelector('#projectSize_kWh');
+      if (projectSizeField) projectSizeField.value = '200+';
+      const appTypeField = document.querySelector('#applicationType');
+      if (appTypeField) appTypeField.value = 'utility';
+      showToast(`Pre-selected utility solution`, 'success');
+    }
+    
+    // Form submission
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      // Validate all required fields
+      let isValid = true;
+      for (const [name, validator] of Object.entries(validators)) {
+        const field = document.querySelector(`[name="${name}"]`);
+        if (field && validator) {
+          const error = validator(field.value);
+          const errorDiv = document.querySelector(`.error-message[data-for="${name}"]`);
+          if (error) {
+            errorDiv.textContent = error;
+            errorDiv.classList.remove('hidden');
+            field.classList.add('border-red-500');
+            isValid = false;
+          } else if (errorDiv) {
+            errorDiv.classList.add('hidden');
+            field.classList.remove('border-red-500');
+          }
+        }
+      }
+      
+      if (!isValid) {
+        showToast('Please fix the errors above', 'error');
+        return;
+      }
+      
+      // Collect and sanitize form data
+      const formData = new FormData(form);
+      const data = {
+        timestamp: new Date().toISOString(),
+        name: sanitizeInput(formData.get('name') || ''),
+        email: sanitizeInput(formData.get('email') || ''),
+        company: sanitizeInput(formData.get('company') || ''),
+        phone: sanitizeInput(formData.get('phone') || ''),
+        projectSize_kWh: sanitizeInput(formData.get('projectSize_kWh') || ''),
+        applicationType: sanitizeInput(formData.get('applicationType') || ''),
+        timeline: sanitizeInput(formData.get('timeline') || ''),
+        productInterestIds: formData.getAll('productInterestIds').map(id => sanitizeInput(id)),
+        message: sanitizeInput(formData.get('message') || ''),
+        userAgent: navigator.userAgent,
+        referrer: document.referrer
+      };
+      
+      // Disable button during submission
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting...';
+      
+      try {
+        const response = await fetch('/api/submit-lead.json', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        
+        if (response.ok) {
+          showToast('Thank you! A sales representative will contact you within 24 hours.', 'success');
+          form.reset();
+          
+          // Clear comparison localStorage
+          localStorage.removeItem('vestwoods_compare_ids');
+          
+          // Optional: redirect after 3 seconds
+          setTimeout(() => {
+            window.location.href = '/';
+          }, 3000);
+        } else {
+          const error = await response.json();
+          throw new Error(error.message || 'Submission failed');
+        }
+      } catch (error) {
+        console.error('Form error:', error);
+        showToast('Error submitting form. Please email sales@vestwoods.com directly.', 'error');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit Request';
+      }
+    });
+  </script>
+  
+  <style>
+    @keyframes slideUp {
+      from {
+        transform: translateY(100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+    .animate-slide-up {
+      animation: slideUp 0.3s ease-out;
+    }
+  </style>
+</BaseLayout>

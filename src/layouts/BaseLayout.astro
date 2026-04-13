@@ -1,0 +1,52 @@
+---
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import ProgressiveReward from '../components/ui/ProgressiveReward.astro';
+import WhatsAppButton from '../components/ui/WhatsAppButton.astro';
+
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- SEO Meta Tags -->
+    <title>Vestwoods - Energy Storage Solutions | Commercial & Residential Battery Systems</title>
+    <meta name="description" content="Vestwoods provides UL-certified lithium battery storage and hybrid inverters for residential, commercial, and utility-scale applications. Request a quote today." />
+    <meta name="keywords" content="energy storage, lithium battery, hybrid inverter, solar battery, commercial battery storage, Vestwoods" />
+    <meta name="author" content="Vestwoods" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://vestwoods.com" />
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="Vestwoods - Energy Storage Solutions" />
+    <meta property="og:description" content="UL-certified lithium battery storage and hybrid inverters for any scale project." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://vestwoods.com" />
+    <meta property="og:image" content="/og-image.jpg" />
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Vestwoods - Energy Storage Solutions" />
+    <meta name="twitter:description" content="UL-certified lithium battery storage and hybrid inverters." />
+    
+    <!-- Performance: Preconnect to critical origins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <link rel="stylesheet" href="/src/styles/global.css" />
+    </head>
+  <body>
+    <Header />
+    <main id="main-content" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
+      <slot />
+    </main>
+    <Footer />
+    <script src="/src/utils/kineticFeedback.js"></script>
+    <script src="/src/utils/cursorReactive.js"></script>
+    <ProgressiveReward />
+    <WhatsAppButton />
+  </body>
+</html>

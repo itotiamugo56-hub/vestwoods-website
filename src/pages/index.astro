@@ -1,11 +1,42 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+export const prerender = true;
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CertificationBadges from '../components/ui/CertificationBadges.astro';
+import TrustSignals from '../components/ui/TrustSignals.astro';
+import TestimonialSlot from '../components/ui/TestimonialSlot.astro';
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<BaseLayout>
+  <section class="py-20 text-center">
+    <h1 class="text-5xl font-bold tracking-tight">
+      Energy Storage Solutions
+    </h1>
+    <p class="mt-4 text-xl text-gray-600">
+      Reliable, scalable battery systems for residential, commercial, and utility applications.
+    </p>
+    <div class="mt-8 flex justify-center gap-4">
+      <a href="/products" class="btn-primary">
+        Explore Products
+      </a>
+      <a href="/contact" class="btn-secondary">
+        Contact Sales
+      </a>
+    </div>
+  </section>
+
+  <!-- Trust Signals Section -->
+  <TrustSignals />
+
+  <!-- Certifications Section -->
+  <section class="py-12 text-center">
+    <h2 class="text-2xl font-semibold mb-6">Certifications & Standards</h2>
+    <CertificationBadges />
+  </section>
+
+  <!-- Testimonial Section -->
+  <section class="py-12 max-w-3xl mx-auto">
+    <h2 class="text-2xl font-semibold text-center mb-8">What Our Customers Say</h2>
+    <TestimonialSlot />
+  </section>
+</BaseLayout>

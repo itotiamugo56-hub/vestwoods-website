@@ -1,0 +1,132 @@
+---
+const currentYear = new Date().getFullYear();
+const footerLinks = {
+  products: [
+    { href: '/products/lithium-battery-10kwh', label: '10kWh Lithium Battery' },
+    { href: '/products/lithium-battery-20kwh', label: '20kWh Lithium Battery' },
+    { href: '/products/hybrid-inverter-5kw', label: '5kW Hybrid Inverter' },
+    { href: '/products/hybrid-inverter-10kw', label: '10kW Hybrid Inverter' },
+  ],
+  solutions: [
+    { href: '/solutions/residential', label: 'Residential' },
+    { href: '/solutions/commercial', label: 'Commercial' },
+    { href: '/solutions/utility', label: 'Utility & Grid-Scale' },
+  ],
+  company: [
+    { href: '/about', label: 'About Us' },
+    { href: '/contact', label: 'Contact' },
+    { href: '/privacy', label: 'Privacy Policy' },
+    { href: '/terms', label: 'Terms of Service' },
+  ],
+  contact: {
+    email: 'sales@vestwoods.com',
+    phone: '+1 234 567 8900',
+    whatsapp: 'https://wa.me/1234567890',
+  },
+};
+---
+
+<footer class="bg-[#1e2a3e] text-white mt-20">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      
+      {/* Brand Column */}
+      <div>
+        <h3 class="text-xl font-bold mb-4">Vestwoods</h3>
+        <p class="text-gray-300 text-sm leading-relaxed">
+          Energy storage solutions for residential, commercial, and utility-scale applications. 
+          Built to last. Certified for safety.
+        </p>
+        <div class="flex gap-3 mt-4">
+          <a href="#" class="text-gray-300 hover:text-[#00b4d8] transition-colors" aria-label="LinkedIn">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+            </svg>
+          </a>
+          <a href="#" class="text-gray-300 hover:text-[#00b4d8] transition-colors" aria-label="Twitter">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 0021.683-12.279c0-.21-.005-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+            </svg>
+          </a>
+          <a href="#" class="text-gray-300 hover:text-[#00b4d8] transition-colors" aria-label="Facebook">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      {/* Products Column */}
+      <div>
+        <h3 class="text-lg font-semibold mb-4 text-[#00b4d8]">Products</h3>
+        <ul class="space-y-2">
+          {footerLinks.products.map(link => (
+            <li>
+              <a href={link.href} class="text-gray-300 hover:text-white hover:underline text-sm transition-colors">
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Solutions Column */}
+      <div>
+        <h3 class="text-lg font-semibold mb-4 text-[#00b4d8]">Solutions</h3>
+        <ul class="space-y-2">
+          {footerLinks.solutions.map(link => (
+            <li>
+              <a href={link.href} class="text-gray-300 hover:text-white hover:underline text-sm transition-colors">
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Contact Column */}
+      <div>
+        <h3 class="text-lg font-semibold mb-4 text-[#00b4d8]">Get in Touch</h3>
+        <ul class="space-y-3">
+          <li class="flex items-center gap-3 text-sm text-gray-300">
+            <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+            </svg>
+            <a href="mailto:{footerLinks.contact.email}" class="hover:text-white hover:underline">
+              {footerLinks.contact.email}
+            </a>
+          </li>
+          <li class="flex items-center gap-3 text-sm text-gray-300">
+            <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+            </svg>
+            <a href="tel:{footerLinks.contact.phone}" class="hover:text-white hover:underline">
+              {footerLinks.contact.phone}
+            </a>
+          </li>
+          <li class="flex items-center gap-3 text-sm">
+            <a 
+              href={footerLinks.contact.whatsapp}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 bg-[#25D366] text-white px-4 py-2 rounded-lg hover:scale-105 transition-transform"
+            >
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.967-.94 1.165-.173.199-.347.223-.644.075-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.614-.916-2.21-.242-.579-.487-.5-.669-.51-.173-.01-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.298-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 2C6.48 2 2 6.48 2 12c0 1.892.521 3.664 1.426 5.191L2 22l4.809-1.426A9.959 9.959 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z"/>
+              </svg>
+              WhatsApp
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    {/* Bottom Bar */}
+    <div class="border-t border-gray-700 mt-10 pt-6 text-center text-sm text-gray-400">
+      <p>&copy; {currentYear} Vestwoods. All rights reserved.</p>
+      <p class="mt-1 text-xs">
+        UL 1973 | CE | UN38.3 | IEC 62619 | UL 1741 | ISO 9001 Certified
+      </p>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,51 @@
+---
+// Testimonial data - replace with real customer stories
+const testimonials = [
+  {
+    name: "Michael Okonkwo",
+    title: "Facility Manager",
+    company: "Lagos Business School",
+    text: "The 50kWh commercial installation has cut our diesel generator usage by 70%. Payback in under 3 years.",
+    rating: 5,
+    image: "https://randomuser.me/api/portraits/men/32.jpg"
+  },
+  {
+    name: "Dr. Sarah Wanjiku",
+    title: "Homeowner",
+    company: "Nairobi",
+    text: "After three grid outages last month, our Vestwoods battery kept the lights on every time. Best investment for our home.",
+    rating: 5,
+    image: "https://randomuser.me/api/portraits/women/44.jpg"
+  },
+  {
+    name: "James Omondi",
+    title: "Project Engineer",
+    company: "Kisumu Solar",
+    text: "Installation was straightforward. The app monitoring is excellent. Our clients love the reliability.",
+    rating: 5,
+    image: "https://randomuser.me/api/portraits/men/45.jpg"
+  }
+];
+
+// Randomly select one testimonial
+const randomIndex = Math.floor(Math.random() * testimonials.length);
+const testimonial = testimonials[randomIndex];
+---
+
+<div class="bg-[#faf8f5] rounded-2xl p-6 border border-[#e5e0d5] my-8">
+  <div class="flex items-center gap-4 mb-4">
+    <img 
+      src={testimonial.image} 
+      alt={testimonial.name}
+      class="w-12 h-12 rounded-full object-cover"
+    />
+    <div>
+      <div class="font-semibold text-[#1e2a3e]">{testimonial.name}</div>
+      <div class="text-sm text-gray-500">{testimonial.title}, {testimonial.company}</div>
+    </div>
+  </div>
+  <div class="flex text-yellow-400 mb-3">
+    {'★'.repeat(testimonial.rating)}{'☆'.repeat(5 - testimonial.rating)}
+  </div>
+  <p class="text-gray-700 italic">"{testimonial.text}"</p>
+</div>

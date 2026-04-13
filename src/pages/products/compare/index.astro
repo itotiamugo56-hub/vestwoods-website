@@ -1,0 +1,281 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import productsData from '../../../data/products.json';
+
+const allProducts = productsData.products;
+---
+
+<BaseLayout>
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold">Compare Products</h1>
+    <p class="mt-2 text-gray-600">Select up to 4 products to compare. Swipe cards on mobile.</p>
+  </div>
+
+  <div id="compare-root">
+    <!-- Product Selector -->
+    <div class="mb-8">
+      <label class="block text-sm font-medium mb-2">Add products to compare:</label>
+      <select id="product-selector" class="w-full max-w-md rounded-lg border px-3 py-2 bg-[var(--color-background-card)] border-[var(--color-border)] focus:border-[var(--color-accent)] focus:outline-none">
+        <option value="">-- Select a product --</option>
+        {allProducts.map(product => (
+          <option value={product.id}>{product.name}</option>
+        ))}
+      </select>
+    </div>
+
+    <!-- Cards Container -->
+    <div id="cards-container" class="relative">
+      <div id="no-products-message" class="text-center text-gray-500 py-12">
+        Select products above to start comparing
+      </div>
+      
+      <div id="cards-wrapper" class="hidden">
+        <div id="cards-scroll" class="flex overflow-x-auto gap-6 pb-6 snap-x snap-mandatory scroll-smooth hide-scrollbar">
+          <!-- Cards will be inserted here -->
+        </div>
+        
+        <div id="scroll-hint" class="text-center text-xs text-gray-400 mt-4 md:hidden">
+          ← Swipe to see more products →
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .hide-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    .hide-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+  </style>
+
+  <script define:vars={{ allProducts: JSON.stringify(allProducts) }}>
+    const productsData = JSON.parse(allProducts);
+    let selectedIds = [];
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return str
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function getBestValue(products, specKey) {
+      if (specKey === 'capacity_kWh' || specKey === 'cycles') {
+        const values = products.map(p => p.specs[specKey]).filter(v => v);
+        return values.length > 0 ? Math.max(...values) : null;
+      }
+      if (specKey === 'efficiency') {
+        const values = products.map(p => parseFloat(p.specs[specKey])).filter(v => v);
+        return values.length > 0 ? Math.max(...values) : null;
+      }
+      return null;
+    }
+
+    function formatSpecValue(specKey, value) {
+      if (!value && value !== 0) return '—';
+      if (specKey === 'capacity_kWh') return `${value} kWh`;
+      if (specKey === 'power_kW') return `${value} kW`;
+      if (specKey === 'voltage_V') return `${value} V`;
+      if (specKey === 'cycles') return `${value.toLocaleString()} cycles`;
+      if (specKey === 'efficiency') return `${value}`;
+      if (specKey === 'weight_kg') return `${value} kg`;
+      return value;
+    }
+
+    function renderProductCard(product, isBestMap) {
+      const specs = [
+        { key: 'capacity_kWh', label: 'Capacity', icon: '🔋' },
+        { key: 'power_kW', label: 'Power', icon: '⚡' },
+        { key: 'voltage_V', label: 'Voltage', icon: '⎍' },
+        { key: 'cycles', label: 'Cycle Life', icon: '🔄' },
+        { key: 'chemistry', label: 'Chemistry', icon: '🧪' },
+        { key: 'efficiency', label: 'Efficiency', icon: '📊' },
+        { key: 'dimensions_mm', label: 'Dimensions', icon: '📏' },
+        { key: 'weight_kg', label: 'Weight', icon: '⚖️' },
+      ];
+
+      let specsHtml = '';
+      for (const spec of specs) {
+        const value = product.specs[spec.key];
+        const displayValue = formatSpecValue(spec.key, value);
+        const isBest = isBestMap[spec.key] === value || (spec.key === 'efficiency' && parseFloat(isBestMap[spec.key]) === parseFloat(value));
+        
+        specsHtml += `
+          <div class="flex justify-between items-center py-3 border-b last:border-0" style="border-color: var(--color-border)">
+            <div class="flex items-center gap-2">
+              <span class="text-lg">${spec.icon}</span>
+              <span class="text-sm" style="color: var(--color-text-secondary)">${spec.label}</span>
+            </div>
+            <div class="flex items-center gap-1">
+              ${isBest ? '<span class="text-green-500 text-sm" title="Best in class">🏆</span>' : ''}
+              <span class="${isBest ? 'font-bold' : ''}" style="${isBest ? 'color: var(--color-primary)' : 'color: var(--color-text)'}">${displayValue}</span>
+            </div>
+          </div>
+        `;
+      }
+
+      const certs = product.certifications || [];
+      const certsHtml = certs.slice(0, 3).map(c => 
+        `<span class="inline-block bg-green-50 text-green-700 text-xs px-2 py-1 rounded-full mr-1 mb-1">${escapeHtml(c)}</span>`
+      ).join('');
+      const moreCerts = certs.length > 3 ? `<span class="inline-block text-xs text-gray-400">+${certs.length - 3} more</span>` : '';
+
+      return `
+        <div class="card-item flex-shrink-0 w-[85%] md:w-[calc(33.333%-1rem)] lg:w-[calc(25%-1rem)] snap-start rounded-2xl shadow-sm hover:shadow-md transition-all" style="background: var(--color-background-card); border: 1px solid var(--color-border)">
+          <div class="flex justify-end p-3">
+            <button class="remove-card text-gray-400 hover:text-red-500 transition-colors" data-id="${product.id}">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+          
+          <div class="px-4 pb-2">
+            <div class="w-20 h-20 bg-gray-100 rounded-xl flex items-center justify-center text-3xl mx-auto mb-3">
+              🔋
+            </div>
+            <h3 class="text-xl font-bold text-center" style="color: var(--color-primary)">${escapeHtml(product.name)}</h3>
+            <div class="text-xs text-gray-500 text-center capitalize mt-1">${product.category}</div>
+          </div>
+          
+          <div class="px-4 pb-3">
+            <div class="rounded-xl p-3" style="background: var(--color-background)">
+              ${specsHtml}
+            </div>
+          </div>
+          
+          <div class="px-4 pb-3">
+            <div class="text-xs text-gray-500 mb-1">✅ Certifications</div>
+            <div class="flex flex-wrap">
+              ${certsHtml}
+              ${moreCerts}
+            </div>
+          </div>
+          
+          <div class="p-4 pt-0">
+            <a href="/contact?product=${product.id}" 
+               class="btn-primary block w-full text-center text-sm">
+              Request Quote →
+            </a>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderCards(ids) {
+      const productsToCompare = productsData.filter(p => ids.includes(p.id));
+      const wrapper = document.getElementById('cards-wrapper');
+      const messageDiv = document.getElementById('no-products-message');
+      const scrollContainer = document.getElementById('cards-scroll');
+      const scrollHint = document.getElementById('scroll-hint');
+      
+      if (productsToCompare.length === 0) {
+        wrapper.classList.add('hidden');
+        messageDiv.classList.remove('hidden');
+        return;
+      }
+      
+      wrapper.classList.remove('hidden');
+      messageDiv.classList.add('hidden');
+      
+      const bestValues = {};
+      const specKeys = ['capacity_kWh', 'cycles', 'efficiency'];
+      for (const key of specKeys) {
+        bestValues[key] = getBestValue(productsToCompare, key);
+      }
+      
+      let cardsHtml = '';
+      for (const product of productsToCompare) {
+        cardsHtml += renderProductCard(product, bestValues);
+      }
+      
+      scrollContainer.innerHTML = cardsHtml;
+      
+      if (productsToCompare.length > 1 && window.innerWidth < 768) {
+        scrollHint.classList.remove('hidden');
+      } else {
+        scrollHint.classList.add('hidden');
+      }
+      
+      document.querySelectorAll('.remove-card').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const id = btn.getAttribute('data-id');
+          selectedIds = selectedIds.filter(i => i !== id);
+          updateUrl(selectedIds);
+          renderCards(selectedIds);
+          updateSelector();
+        });
+      });
+    }
+
+    function getUrlParams() {
+      const params = new URLSearchParams(window.location.search);
+      const ids = params.get('ids');
+      return ids ? ids.split(',') : [];
+    }
+
+    function updateUrl(ids) {
+      const url = new URL(window.location.href);
+      if (ids.length > 0) {
+        url.searchParams.set('ids', ids.join(','));
+      } else {
+        url.searchParams.delete('ids');
+      }
+      window.history.pushState({}, '', url);
+    }
+
+    function updateSelector() {
+      const selector = document.getElementById('product-selector');
+      if (selector) {
+        for (const option of selector.options) {
+          if (selectedIds.includes(option.value)) {
+            option.disabled = true;
+          } else {
+            option.disabled = false;
+          }
+        }
+      }
+    }
+
+    function init() {
+      selectedIds = getUrlParams();
+      renderCards(selectedIds);
+      updateSelector();
+
+      const selector = document.getElementById('product-selector');
+      selector.addEventListener('change', (e) => {
+        const id = e.target.value;
+        if (!id) return;
+        if (selectedIds.length >= 4) {
+          alert('Maximum 4 products can be compared');
+          return;
+        }
+        if (!selectedIds.includes(id)) {
+          selectedIds.push(id);
+          updateUrl(selectedIds);
+          renderCards(selectedIds);
+          updateSelector();
+        }
+        selector.value = '';
+      });
+      
+      window.addEventListener('resize', () => {
+        const productsToCompare = productsData.filter(p => selectedIds.includes(p.id));
+        const scrollHint = document.getElementById('scroll-hint');
+        if (productsToCompare.length > 1 && window.innerWidth < 768) {
+          scrollHint.classList.remove('hidden');
+        } else {
+          scrollHint.classList.add('hidden');
+        }
+      });
+    }
+
+    init();
+  </script>
+</BaseLayout>

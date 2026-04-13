@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://vestwoods.com/sitemap.xml

@@ -1,0 +1,19 @@
+---
+// Trust signals data - replace with actual company metrics
+const trustSignals = [
+  { value: '647', label: 'Installations', icon: '🔋', suffix: '+' },
+  { value: '18', label: 'Countries', icon: '🌍', suffix: '' },
+  { value: '4.9', label: 'Customer Rating', icon: '⭐', suffix: '/5' },
+  { value: '98%', label: 'Customer Retention', icon: '🔄', suffix: '' },
+];
+---
+
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6 my-8">
+  {trustSignals.map((signal) => (
+    <div class="text-center p-4 rounded-xl bg-[#faf8f5] border border-[#e5e0d5] shadow-sm hover:shadow-md transition-all hover:border-[#2c7a8c] group">
+      <div class="text-4xl mb-2 group-hover:scale-110 transition-transform">{signal.icon}</div>
+      <div class="text-3xl font-bold text-[#1e2a3e]">{signal.value}{signal.suffix}</div>
+      <div class="text-sm text-gray-500">{signal.label}</div>
+    </div>
+  ))}
+</div>

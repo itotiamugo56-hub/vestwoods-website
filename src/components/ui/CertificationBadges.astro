@@ -1,0 +1,26 @@
+---
+// Certification badges data - replace with actual certification images/logos
+const certifications = [
+  { name: 'UL 1973', icon: '🔒', description: 'Safety standard for batteries', color: 'bg-blue-50 text-blue-700 border-blue-200' },
+  { name: 'CE', icon: '✓', description: 'EU compliance', color: 'bg-green-50 text-green-700 border-green-200' },
+  { name: 'UN38.3', icon: '📦', description: 'Transportation safety', color: 'bg-yellow-50 text-yellow-700 border-yellow-200' },
+  { name: 'IEC 62619', icon: '⚡', description: 'Industrial battery safety', color: 'bg-purple-50 text-purple-700 border-purple-200' },
+  { name: 'UL 1741', icon: '🛡️', description: 'Inverters & converters', color: 'bg-indigo-50 text-indigo-700 border-indigo-200' },
+  { name: 'ISO 9001', icon: '🏭', description: 'Quality management', color: 'bg-gray-100 text-gray-700 border-gray-300' },
+];
+---
+
+<div class="flex flex-wrap justify-center gap-3 my-6">
+  {certifications.map(cert => (
+    <div class="group relative">
+      <div class={`${cert.color} rounded-lg px-4 py-2 text-sm font-medium border shadow-sm hover:shadow-md transition-all cursor-help`}>
+        <span class="mr-1">{cert.icon}</span>
+        {cert.name}
+      </div>
+      <!-- Tooltip -->
+      <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-gray-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-10">
+        {cert.description}
+      </div>
+    </div>
+  ))}
+</div>

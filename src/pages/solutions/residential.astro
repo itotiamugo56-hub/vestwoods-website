@@ -1,0 +1,255 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CertificationBadges from '../../components/ui/CertificationBadges.astro';
+---
+
+<BaseLayout>
+  <!-- Hero Section -->
+  <section class="py-12 md:py-20">
+    <div class="max-w-4xl mx-auto text-center">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">
+        Residential Energy Storage
+      </h1>
+      <p class="text-xl text-gray-600 mb-8">
+        Power your home with clean, reliable backup. Save money. Never worry about outages again.
+      </p>
+      <a href="/contact" class="btn-primary inline-block">
+        Get Your Free Quote →
+      </a>
+    </div>
+  </section>
+
+  <!-- Problem Statement -->
+  <section class="py-12 bg-gray-50 rounded-2xl my-8">
+    <div class="max-w-3xl mx-auto px-6 text-center">
+      <div class="text-5xl mb-4">⚡</div>
+      <h2 class="text-2xl font-bold mb-4">Tired of rising electricity bills and power outages?</h2>
+      <p class="text-gray-700 text-lg">
+        You're not alone. Millions of homeowners are switching to battery storage to take control of their energy costs and keep the lights on during grid failures.
+      </p>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="py-12">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="text-3xl font-bold text-center mb-12">How It Works</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="text-center">
+          <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center text-3xl mx-auto mb-4">☀️</div>
+          <h3 class="text-xl font-semibold mb-2">1. Generate or Store</h3>
+          <p class="text-gray-600">Solar panels generate free electricity during the day. Or charge from the grid at off-peak rates.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center text-3xl mx-auto mb-4">🔋</div>
+          <h3 class="text-xl font-semibold mb-2">2. Store Excess Energy</h3>
+          <p class="text-gray-600">Your Vestwoods battery captures unused energy instead of sending it back to the grid.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center text-3xl mx-auto mb-4">🏠</div>
+          <h3 class="text-xl font-semibold mb-2">3. Use When Needed</h3>
+          <p class="text-gray-600">Power your home at night, during outages, or when electricity rates are highest.</p>
+        </div>
+      </div>
+      <!-- System Diagram -->
+      <div class="mt-12 p-8 bg-gray-100 rounded-xl text-center text-gray-500 border-2 border-dashed border-gray-300">
+        📐 System Diagram – Solar panels → Hybrid Inverter → Battery Storage → Home Loads → Grid Export
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Benefits -->
+  <section class="py-12 bg-gray-50 rounded-2xl my-8">
+    <div class="max-w-5xl mx-auto px-6">
+      <h2 class="text-3xl font-bold text-center mb-12">Why Homeowners Choose Vestwoods</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="flex gap-3">
+          <span class="text-green-500 text-xl">✓</span>
+          <div><strong class="block">Save up to 70% on electricity bills</strong> <span class="text-gray-600 text-sm">Based on typical residential usage patterns</span></div>
+        </div>
+        <div class="flex gap-3">
+          <span class="text-green-500 text-xl">✓</span>
+          <div><strong class="block">24/7 backup during outages</strong> <span class="text-gray-600 text-sm">Automatic switchover in milliseconds</span></div>
+        </div>
+        <div class="flex gap-3">
+          <span class="text-green-500 text-xl">✓</span>
+          <div><strong class="block">10-year warranty</strong> <span class="text-gray-600 text-sm">Industry-leading coverage for peace of mind</span></div>
+        </div>
+        <div class="flex gap-3">
+          <span class="text-green-500 text-xl">✓</span>
+          <div><strong class="block">Reduce carbon footprint</strong> <span class="text-gray-600 text-sm">Typical system offsets 3.5 tons of CO₂ annually</span></div>
+        </div>
+        <div class="flex gap-3">
+          <span class="text-green-500 text-xl">✓</span>
+          <div><strong class="block">Smart app monitoring</strong> <span class="text-gray-600 text-sm">Track production, consumption, and savings in real time</span></div>
+        </div>
+        <div class="flex gap-3">
+          <span class="text-green-500 text-xl">✓</span>
+          <div><strong class="block">Local installer network</strong> <span class="text-gray-600 text-sm">Certified professionals in your area</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Typical Configuration -->
+  <section class="py-12">
+    <div class="max-w-4xl mx-auto px-6">
+      <h2 class="text-3xl font-bold text-center mb-8">Recommended System</h2>
+      <div class="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+        <table class="w-full">
+          <tr class="border-b">
+            <td class="py-3 font-semibold">Battery</td>
+            <td class="py-3">10kWh Lithium Battery (expandable to 20kWh+)</td>
+          </tr>
+          <tr class="border-b">
+            <td class="py-3 font-semibold">Inverter</td>
+            <td class="py-3">5kW Hybrid Inverter (supports solar + battery)</td>
+          </tr>
+          <tr class="border-b">
+            <td class="py-3 font-semibold">Solar Compatible</td>
+            <td class="py-3">Yes – works with existing or new solar panels</td>
+          </tr>
+        </table>
+        <div class="mt-6 p-4 bg-blue-50 rounded-lg text-center">
+          <p class="text-gray-700">🏠 <strong>Covers typical home usage:</strong> 10-15 kWh per day, enough for essentials during outages (refrigerator, lights, phones, WiFi, medical devices)</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Estimated ROI -->
+  <section class="py-12 bg-gray-50 rounded-2xl my-8">
+    <div class="max-w-3xl mx-auto px-6 text-center">
+      <h2 class="text-3xl font-bold mb-4">Estimated Return on Investment</h2>
+      <div class="bg-white rounded-xl p-6 shadow-sm mb-6">
+        <div class="text-5xl font-bold text-blue-600 mb-2">4-6 years</div>
+        <p class="text-gray-600">Typical payback period through bill savings</p>
+        <div class="w-full bg-gray-200 rounded-full h-2 mt-4">
+          <div class="bg-blue-600 h-2 rounded-full" style="width: 75%"></div>
+        </div>
+        <p class="text-sm text-gray-500 mt-2">System lasts 10+ years → 4-6 years of pure savings after payback</p>
+      </div>
+      <div class="bg-white rounded-xl p-6 shadow-sm">
+        <h3 class="text-lg font-bold mb-3 text-[#1e2a3e]">💰 Savings Calculator</h3>
+        <div class="space-y-3 text-left">
+          <div class="flex justify-between">
+            <span>Average monthly electricity bill:</span>
+            <span class="font-semibold">$150</span>
+          </div>
+          <div class="flex justify-between text-green-600">
+            <span>Estimated savings (60%):</span>
+            <span class="font-semibold">$90/month</span>
+          </div>
+          <div class="flex justify-between text-green-700 font-bold">
+            <span>Annual savings:</span>
+            <span>$1,080/year</span>
+          </div>
+          <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
+            <div class="bg-[#2c7a8c] h-2 rounded-full" style="width: 60%"></div>
+          </div>
+          <p class="text-xs text-gray-500 text-center mt-2">*Based on average utility rates. Your savings may vary.</p>
+        </div>
+      </div>
+      <p class="text-sm text-gray-500 mt-4">*Local incentives may reduce payback period. Contact us for a personalized assessment.</p>
+    </div>
+  </section>
+
+  <!-- Certifications -->
+  <section class="py-12">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <h2 class="text-2xl font-semibold mb-6">Safety & Compliance</h2>
+      <CertificationBadges />
+      <p class="text-sm text-gray-500 mt-4">All Vestwoods products meet or exceed international safety standards</p>
+    </div>
+  </section>
+
+  <!-- Reference Project -->
+  <section class="py-12 bg-gray-50 rounded-2xl my-8">
+    <div class="max-w-3xl mx-auto px-6">
+      <h2 class="text-2xl font-bold text-center mb-8">Real Customer, Real Results</h2>
+      <div class="bg-white rounded-xl p-6 shadow-sm">
+        <div class="flex items-center gap-4 mb-4">
+          <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Customer" class="w-16 h-16 rounded-full object-cover" />
+          <div>
+            <div class="font-semibold text-gray-900">Michael Okonkwo</div>
+            <div class="text-sm text-gray-500">Lagos, Nigeria</div>
+          </div>
+        </div>
+        <p class="text-gray-700 italic mb-4">
+          "After three grid outages last month, our Vestwoods battery kept the lights on every time. We've cut diesel generator usage by 80%. Best investment for our home."
+        </p>
+        <div class="grid grid-cols-2 gap-4 text-center text-sm">
+          <div><span class="font-bold">65%</span><br />reduction in bills</div>
+          <div><span class="font-bold">7+</span><br />outages survived</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What's Included -->
+  <section class="py-12">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="bg-[#1e2a3e] text-white rounded-2xl p-6">
+        <h3 class="text-xl font-bold mb-4 text-center">What's Included</h3>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+          <div>
+            <div class="text-2xl mb-1">🔋</div>
+            <div class="font-semibold text-sm">10kWh Battery</div>
+            <div class="text-xs text-gray-300">Expandable to 20kWh</div>
+          </div>
+          <div>
+            <div class="text-2xl mb-1">⚡</div>
+            <div class="font-semibold text-sm">5kW Inverter</div>
+            <div class="text-xs text-gray-300">Hybrid, bi-directional</div>
+          </div>
+          <div>
+            <div class="text-2xl mb-1">📱</div>
+            <div class="font-semibold text-sm">App Monitoring</div>
+            <div class="text-xs text-gray-300">Real-time insights</div>
+          </div>
+          <div>
+            <div class="text-2xl mb-1">🛡️</div>
+            <div class="font-semibold text-sm">10-Year Warranty</div>
+            <div class="text-xs text-gray-300">Peace of mind</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-12">
+    <div class="max-w-3xl mx-auto px-6">
+      <h2 class="text-3xl font-bold text-center mb-8">Frequently Asked Questions</h2>
+      <div class="space-y-3">
+        <details class="border border-gray-200 rounded-lg p-4 bg-white">
+          <summary class="font-semibold text-lg cursor-pointer">How long does installation take?</summary>
+          <p class="text-gray-600 mt-2">Typical residential installation takes 1-2 days after site assessment.</p>
+        </details>
+        <details class="border border-gray-200 rounded-lg p-4 bg-white">
+          <summary class="font-semibold text-lg cursor-pointer">Will it work during a power outage?</summary>
+          <p class="text-gray-600 mt-2">Yes – automatic islanding mode keeps your home powered when the grid goes down.</p>
+        </details>
+        <details class="border border-gray-200 rounded-lg p-4 bg-white">
+          <summary class="font-semibold text-lg cursor-pointer">What maintenance is required?</summary>
+          <p class="text-gray-600 mt-2">Virtually none. The system self-manages and provides remote alerts if any issue arises.</p>
+        </details>
+        <details class="border border-gray-200 rounded-lg p-4 bg-white">
+          <summary class="font-semibold text-lg cursor-pointer">Are there tax credits available?</summary>
+          <p class="text-gray-600 mt-2">Many regions offer incentives. Contact us for details specific to your location.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="py-16 bg-[#1e2a3e] text-white rounded-2xl my-8 text-center">
+    <div class="max-w-2xl mx-auto px-6">
+      <h2 class="text-3xl font-bold mb-4">Ready to take control of your energy?</h2>
+      <p class="text-gray-300 mb-8">Get a custom quote for your home – no obligation, free consultation.</p>
+      <a href="/contact?product=residential" class="bg-white text-[#1e2a3e] px-8 py-3 rounded-full font-semibold hover:shadow-lg transition-all inline-block">
+        Request Your Free Quote →
+      </a>
+    </div>
+  </section>
+</BaseLayout>

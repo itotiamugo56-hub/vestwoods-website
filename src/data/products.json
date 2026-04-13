@@ -1,0 +1,92 @@
+{
+  "products": [
+    {
+      "id": "bat-10kwh",
+      "slug": "lithium-battery-10kwh",
+      "name": "Lithium Battery 10kWh",
+      "category": "residential",
+      "specs": {
+        "capacity_kWh": 10.2,
+        "power_kW": 5.0,
+        "voltage_V": 51.2,
+        "cycles": 6000,
+        "chemistry": "LiFePO4",
+        "depthOfDischarge": "95%",
+        "efficiency": "97%",
+        "dimensions_mm": "600x300x200",
+        "weight_kg": 98
+      },
+      "certifications": ["UL1973", "CE", "UN38.3", "IEC62619"],
+      "datasheetUrl": "/datasheets/vestwoods-battery-10kwh-spec.pdf",
+      "imageUrl": "/products/battery-10kwh.jpg",
+      "featured": true,
+      "featuredOrder": 1
+    },
+    {
+      "id": "bat-20kwh",
+      "slug": "lithium-battery-20kwh",
+      "name": "Lithium Battery 20kWh",
+      "category": "commercial",
+      "specs": {
+        "capacity_kWh": 20.4,
+        "power_kW": 10.0,
+        "voltage_V": 51.2,
+        "cycles": 6000,
+        "chemistry": "LiFePO4",
+        "depthOfDischarge": "95%",
+        "efficiency": "97%",
+        "dimensions_mm": "800x400x250",
+        "weight_kg": 185
+      },
+      "certifications": ["UL1973", "CE", "UN38.3", "IEC62619"],
+      "datasheetUrl": "/datasheets/vestwoods-battery-20kwh-spec.pdf",
+      "imageUrl": "/products/battery-20kwh.jpg",
+      "featured": true,
+      "featuredOrder": 2
+    },
+    {
+      "id": "inv-5kw",
+      "slug": "hybrid-inverter-5kw",
+      "name": "Hybrid Inverter 5kW",
+      "category": "residential",
+      "specs": {
+        "capacity_kWh": null,
+        "power_kW": 5.0,
+        "voltage_V": 48,
+        "cycles": null,
+        "chemistry": null,
+        "depthOfDischarge": null,
+        "efficiency": "96%",
+        "dimensions_mm": "450x350x150",
+        "weight_kg": 25
+      },
+      "certifications": ["UL1741", "CE", "IEC62109"],
+      "datasheetUrl": "/datasheets/vestwoods-inverter-5kw-spec.pdf",
+      "imageUrl": "/products/inverter-5kw.jpg",
+      "featured": true,
+      "featuredOrder": 3
+    },
+    {
+      "id": "inv-10kw",
+      "slug": "hybrid-inverter-10kw",
+      "name": "Hybrid Inverter 10kW",
+      "category": "commercial",
+      "specs": {
+        "capacity_kWh": null,
+        "power_kW": 10.0,
+        "voltage_V": 48,
+        "cycles": null,
+        "chemistry": null,
+        "depthOfDischarge": null,
+        "efficiency": "96.5%",
+        "dimensions_mm": "550x400x180",
+        "weight_kg": 38
+      },
+      "certifications": ["UL1741", "CE", "IEC62109"],
+      "datasheetUrl": "/datasheets/vestwoods-inverter-10kw-spec.pdf",
+      "imageUrl": "/products/inverter-10kw.jpg",
+      "featured": false,
+      "featuredOrder": null
+    }
+  ]
+}
