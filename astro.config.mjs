@@ -3,12 +3,18 @@ import react from '@astrojs/react';
 import tailwindcss from '@tailwindcss/vite';
 import netlify from '@astrojs/netlify';
 
-
 export default defineConfig({
-  integrations: [react()],
-    output: 'server',
+  output: 'server',
   adapter: netlify(),
+  integrations: [react()],
   vite: {
     plugins: [tailwindcss()],
+    css: {
+      preprocessorOptions: {
+        css: {
+          additionalData: `@import "tailwindcss";`
+        }
+      }
+    }
   },
 });
