@@ -9,12 +9,5 @@ export default defineConfig({
   integrations: [react()],
   vite: {
     plugins: [tailwindcss()],
-    css: {
-      preprocessorOptions: {
-        css: {
-          additionalData: `@import "tailwindcss";`
-        }
-      }
-    }
   },
 });
