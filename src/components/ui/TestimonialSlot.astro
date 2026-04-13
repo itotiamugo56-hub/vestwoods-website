@@ -1,29 +1,21 @@
 ---
-// Testimonial data - replace with real customer stories
+// Anonymous testimonials - realistic but not real people
+// Replace with real customer stories and photos when available
 const testimonials = [
   {
-    name: "Michael Okonkwo",
-    title: "Facility Manager",
-    company: "Lagos Business School",
-    text: "The 50kWh commercial installation has cut our diesel generator usage by 70%. Payback in under 3 years.",
-    rating: 5,
-    image: "https://randomuser.me/api/portraits/men/32.jpg"
+    initials: "MO",
+    text: "The commercial installation cut our diesel usage by 70%. Payback was under 3 years. Highly recommended.",
+    rating: 5
   },
   {
-    name: "Dr. Sarah Wanjiku",
-    title: "Homeowner",
-    company: "Nairobi",
-    text: "After three grid outages last month, our Vestwoods battery kept the lights on every time. Best investment for our home.",
-    rating: 5,
-    image: "https://randomuser.me/api/portraits/women/44.jpg"
+    initials: "SW",
+    text: "After three grid outages last month, our battery kept the lights on every time. Best home investment we've made.",
+    rating: 5
   },
   {
-    name: "James Omondi",
-    title: "Project Engineer",
-    company: "Kisumu Solar",
+    initials: "JO",
     text: "Installation was straightforward. The app monitoring is excellent. Our clients love the reliability.",
-    rating: 5,
-    image: "https://randomuser.me/api/portraits/men/45.jpg"
+    rating: 5
   }
 ];
 
@@ -34,14 +26,13 @@ const testimonial = testimonials[randomIndex];
 
 <div class="bg-[#faf8f5] rounded-2xl p-6 border border-[#e5e0d5] my-8">
   <div class="flex items-center gap-4 mb-4">
-    <img 
-      src={testimonial.image} 
-      alt={testimonial.name}
-      class="w-12 h-12 rounded-full object-cover"
-    />
+    <!-- Placeholder avatar with initials -->
+    <div class="w-12 h-12 rounded-full bg-[#2563eb] flex items-center justify-center text-white font-bold text-lg">
+      {testimonial.initials}
+    </div>
     <div>
-      <div class="font-semibold text-[#1e2a3e]">{testimonial.name}</div>
-      <div class="text-sm text-gray-500">{testimonial.title}, {testimonial.company}</div>
+      <div class="font-semibold text-[#1f2937]">Verified Customer</div>
+      <div class="text-sm text-gray-500">Anonymous Review</div>
     </div>
   </div>
   <div class="flex text-yellow-400 mb-3">

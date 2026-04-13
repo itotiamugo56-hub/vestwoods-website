@@ -1,6 +1,4 @@
 ---
-export const prerender = true;
-
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CertificationBadges from '../components/ui/CertificationBadges.astro';
 import TrustSignals from '../components/ui/TrustSignals.astro';
@@ -8,21 +6,43 @@ import TestimonialSlot from '../components/ui/TestimonialSlot.astro';
 ---
 
 <BaseLayout>
-  <section class="py-20 text-center">
-    <h1 class="text-5xl font-bold tracking-tight">
-      Energy Storage Solutions
-    </h1>
-    <p class="mt-4 text-xl text-gray-600">
-      Reliable, scalable battery systems for residential, commercial, and utility applications.
-    </p>
-    <div class="mt-8 flex justify-center gap-4">
-      <a href="/products" class="btn-primary">
-        Explore Products
-      </a>
-      <a href="/contact" class="btn-secondary">
-        Contact Sales
-      </a>
+  <!-- Hero Section – White background, dark text -->
+  <section class="hero-section py-20 px-4 text-center">
+    <div class="max-w-4xl mx-auto">
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-[#1f2937] mb-4">
+        Vestwoods
+      </h1>
+      <p class="text-xl md:text-2xl text-[#374151] mb-6">
+        Reliable Power. Anytime. Anywhere.
+      </p>
+      <p class="text-[#4b5563] max-w-2xl mx-auto mb-8">
+        Energy storage solutions for residential, commercial, and utility applications.
+        UL-certified. 10-year warranty. Global support.
+      </p>
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
+        <a href="/products" class="bg-[#2563eb] text-white px-6 py-3 rounded-full font-semibold hover:bg-[#1d4ed8] transition-all shadow-md" style="color: white !important;">
+          Explore Products
+        </a>
+        <a href="/contact" class="bg-transparent border-2 border-[#2563eb] text-[#2563eb] px-6 py-3 rounded-full font-semibold hover:bg-[#2563eb] hover:text-white transition-all">
+          Contact Sales
+        </a>
+      </div>
     </div>
+  </section>
+
+  <!-- About Us Section -->
+  <section class="py-16 max-w-4xl mx-auto text-center px-4">
+    <h2 class="text-3xl font-bold text-[#2563eb] mb-6">About Vestwoods</h2>
+    <div class="space-y-4 text-gray-700">
+      <p>
+        Vestwoods specializes in advanced energy storage solutions for residential, commercial, and utility-scale applications.
+      </p>
+      <p>
+        Our products are certified to international standards including UL, CE, and IEC, ensuring safety and reliability for critical power applications.
+      </p>
+      <p>
+        We're committed to providing clean, reliable energy storage that helps our customers take control of their power needs.
+      </p>
   </section>
 
   <!-- Trust Signals Section -->
@@ -30,13 +50,13 @@ import TestimonialSlot from '../components/ui/TestimonialSlot.astro';
 
   <!-- Certifications Section -->
   <section class="py-12 text-center">
-    <h2 class="text-2xl font-semibold mb-6">Certifications & Standards</h2>
+    <h2 class="text-2xl font-semibold mb-6 heading-underline">Certifications & Standards</h2>
     <CertificationBadges />
   </section>
 
   <!-- Testimonial Section -->
   <section class="py-12 max-w-3xl mx-auto">
-    <h2 class="text-2xl font-semibold text-center mb-8">What Our Customers Say</h2>
+    <h2 class="text-2xl font-semibold text-center mb-8 heading-underline">What Our Customers Say</h2>
     <TestimonialSlot />
   </section>
 </BaseLayout>

@@ -1,32 +1,38 @@
 ﻿@import "tailwindcss";
 
 :root {
+  /* Warm earthy background */
   --color-background: #f5f2eb;
   --color-background-card: #faf8f5;
-  --color-foreground: #2c3e4e;
-  --color-primary: #1e2a3e;
-  --color-primary-hover: #15212e;
-  --color-accent: #2c7a8c;
-  --color-accent-hover: #236272;
+  --color-foreground: #1f2937;
+  
+  /* THEIR EXACT BLUE - No navy */
+  --color-primary: #2563eb;
+  --color-primary-hover: #1d4ed8;
+  --color-accent: #2563eb;
+  --color-accent-hover: #1d4ed8;
+  --color-accent-soft: rgba(37, 99, 235, 0.1);
+  --color-accent-glow: rgba(37, 99, 235, 0.3);
+  
   --color-surface-1: #faf8f5;
   --color-surface-2: #f0ede5;
   --color-border: #e5e0d5;
-  --color-text: #2c3e4e;
+  --color-text: #374151;
   --color-text-secondary: #6b7280;
 }
+
+@import "tailwindcss";
 
 @theme {
   --color-background: #f5f2eb;
   --color-background-card: #faf8f5;
-  --color-foreground: #2c3e4e;
-  --color-primary: #1e2a3e;
-  --color-primary-hover: #15212e;
-  --color-accent: #2c7a8c;
-  --color-accent-hover: #236272;
-  --color-surface-1: #faf8f5;
-  --color-surface-2: #f0ede5;
+  --color-foreground: #1f2937;
+  --color-primary: #2563eb;
+  --color-primary-hover: #1d4ed8;
+  --color-accent: #2563eb;
+  --color-accent-hover: #1d4ed8;
   --color-border: #e5e0d5;
-  --color-text: #2c3e4e;
+  --color-text: #374151;
   --color-text-secondary: #6b7280;
 }
 
@@ -45,94 +51,103 @@
 }
 
 @layer components {
+  /* Product Cards */
   .product-card {
-    background: var(--color-background-card) !important;
-    border-radius: 16px !important;
-    border: 1px solid var(--color-border) !important;
-    padding: 1rem !important;
-    transition: all 0.2s ease !important;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.03) !important;
+    background: var(--color-background-card);
+    border-radius: 20px;
+    border: 1px solid var(--color-border);
+    padding: 1.25rem;
+    transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
   }
   
   .product-card:hover {
-    transform: translateY(-4px) !important;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08) !important;
-    border-color: var(--color-accent) !important;
+    transform: translateY(-6px);
+    box-shadow: 0 20px 35px -12px var(--color-accent-glow);
+    border-color: var(--color-primary);
   }
 
+  /* Buttons - Blue background, WHITE text */
   button, .btn-primary {
-    background: var(--color-primary) !important;
+    background: var(--color-primary);
     color: white !important;
-    padding: 0.75rem 1.5rem !important;
-    border-radius: 8px !important;
-    font-weight: 600 !important;
-    font-size: 1rem !important;
-    border: none !important;
-    cursor: pointer !important;
+    padding: 0.75rem 1.75rem;
+    border-radius: 40px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   }
 
   button:hover, .btn-primary:hover {
-    background: var(--color-primary-hover) !important;
-    transform: translateY(-1px) !important;
-    box-shadow: 0 4px 12px rgba(30, 42, 62, 0.2) !important;
+    background: var(--color-primary-hover);
+    color: white !important;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px var(--color-accent-glow);
   }
 
   button:active, .btn-primary:active {
-    transform: translateY(0) !important;
+    transform: translateY(0);
   }
 
+  /* Secondary Buttons - Outline blue */
   .btn-secondary {
-    background: transparent !important;
+    background: transparent;
     color: var(--color-primary) !important;
-    padding: 0.75rem 1.5rem !important;
-    border-radius: 8px !important;
-    font-weight: 600 !important;
-    border: 1px solid var(--color-primary) !important;
+    padding: 0.75rem 1.75rem;
+    border-radius: 40px;
+    font-weight: 600;
+    border: 1.5px solid var(--color-primary);
+    transition: all 0.25s ease;
   }
 
   .btn-secondary:hover {
-    background: rgba(30, 42, 62, 0.08) !important;
-    transform: translateY(-1px) !important;
+    background: var(--color-primary);
+    color: white !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
   }
 
-  input, select, textarea {
-    border-radius: 8px !important;
-    border: 1px solid var(--color-border) !important;
-    padding: 0.75rem 1rem !important;
-    background: var(--color-background-card) !important;
-    font-size: 1rem !important;
-    width: 100% !important;
-  }
-  
-  input:focus, select:focus, textarea:focus {
-    border-color: var(--color-accent) !important;
-    box-shadow: 0 0 0 3px rgba(44, 122, 140, 0.15) !important;
-    outline: none !important;
-  }
-
-  h1 {
-    font-size: 3rem !important;
-    font-weight: 700 !important;
-    color: var(--color-primary) !important;
-    margin-bottom: 1rem !important;
-  }
-
-  h2 {
-    font-size: 2rem !important;
-    font-weight: 600 !important;
-    color: var(--color-primary) !important;
-    margin-bottom: 0.75rem !important;
-  }
-
+  /* Links - Their exact blue */
   a:not(.no-style) {
-    color: var(--color-accent) !important;
-    font-weight: 500 !important;
-    text-decoration: none !important;
+    color: var(--color-primary) !important;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.2s ease;
   }
   
   a:not(.no-style):hover {
-    color: var(--color-accent-hover) !important;
-    text-decoration: underline !important;
+    color: var(--color-primary-hover) !important;
+    text-decoration: underline;
+  }
+
+  /* Bold text (strong, b, font-bold) should be blue */
+  strong, b, .font-bold, .font-semibold {
+    color: var(--color-primary) !important;
+  }
+
+  /* Headings should be blue */
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--color-primary) !important;
+  }
+
+  /* Form Inputs */
+  input, select, textarea {
+    border-radius: 12px;
+    border: 1.5px solid var(--color-border);
+    padding: 0.75rem 1rem;
+    background: var(--color-background-card);
+    font-size: 1rem;
+    width: 100%;
+    transition: all 0.2s ease;
+  }
+  
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px var(--color-accent-soft);
+    outline: none;
   }
 }
 
@@ -148,7 +163,7 @@
     z-index: 9999;
     background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIj48ZmlsdGVyIGlkPSJmIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjc0IiBudW1PY3RhdmVzPSIzIi8+PC9maWx0ZXI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsdGVyPSJ1cmwoI2YpIiBvcGFjaXR5PSIwLjAxIi8+PC9zdmc+');
     background-repeat: repeat;
-    opacity: 0.04;
+    opacity: 0.03;
     mix-blend-mode: multiply;
     pointer-events: none;
   }
