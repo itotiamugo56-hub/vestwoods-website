@@ -49,15 +49,15 @@
     transition-duration: 150ms;
   }
   
-  /* Headings - Dark text, not blue */
-  h1, h2, h3, h4, h5, h6 {
-    color: var(--color-foreground) !important;
-  }
-  
-  /* Bold text - Dark text, not blue */
-  strong, b, .font-bold, .font-semibold {
-    color: var(--color-foreground) !important;
-  }
+/* Headings - Blue */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-primary) !important;
+}
+
+/* Bold text - Blue */
+strong, b, .font-bold, .font-semibold {
+  color: var(--color-primary) !important;
+}
   
   /* Paragraph text */
   p, span, li, .text-gray-600, .text-gray-700 {
